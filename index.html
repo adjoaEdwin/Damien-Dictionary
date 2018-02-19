@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>DIV Dictionary</title>
+</head>
+<body>
+  <div>
+    <center>
+      <h1>Welcome to our dictionary</h1>
+      <input id='word' placeholder="Input the word"/>
+      <button id='getDefinition'>Get definition</button>
+      <div id='loadingIndicator'></div>
+    </center>
+  </div>
+
+  <script>
+    var word = document.getElementById('word');
+    var getDefinitionButton = document.getElementById('getDefinition');
+    var loadingIndicator = document.getElementById('loadingIndicator');
+    console.log(loadingIndicator);
+    getDefinitionButton.addEventListener('click', function(){
+      var value = word.value;
+
+      loadingIndicator.innerHTML = '<h1>Loading, please wait...</h1>';
+
+      fetch(`https://wordsapiv1.p.mashape.com/words/${value}/definitions`, {
+        headers : {
+          "X-Mashape-Key" : "chzAhp8zZTmshnlhL2SXViw8zcyKp1MEGRvjsnKmGoTysjVfsa",
+          "Accept" : "application/json"
+        }
+      })
+        .then(function(response){
+          response.json()
+            .then(function(data){
+              console.log(data);
+            })
+        })
+
+
+
+    })
+
+  </script>
+</body>
+</html>
