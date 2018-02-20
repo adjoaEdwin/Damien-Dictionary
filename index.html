@@ -8,19 +8,20 @@
       <h1>Welcome to our dictionary</h1>
       <input id='word' placeholder="Input the word"/>
       <button id='getDefinition'>Get definition</button>
-      <div id='loadingIndicator'></div>
+      <div id='content'></div>
     </center>
   </div>
 
   <script>
     var word = document.getElementById('word');
     var getDefinitionButton = document.getElementById('getDefinition');
-    var loadingIndicator = document.getElementById('loadingIndicator');
-    console.log(loadingIndicator);
+    var content = document.getElementById('content');
+    console.log(content);
+
     getDefinitionButton.addEventListener('click', function(){
       var value = word.value;
 
-      loadingIndicator.innerHTML = '<h1>Loading, please wait...</h1>';
+      content.innerHTML = '<h1>Loading, please wait...</h1>';
 
       fetch(`https://wordsapiv1.p.mashape.com/words/${value}/definitions`, {
         headers : {
@@ -31,13 +32,24 @@
         .then(function(response){
           response.json()
             .then(function(data){
-              console.log(data);
+              var finalContent = '';
+              data.definitions.map(function(item, i){
+                listItem = i + 1
+                dataContent = '<p>' + listItem + '. ' + item.definition + '</p>';
+                finalContent += dataContent
+              })
+
+              content.innerHTML = finalContent;
             })
+        })
+        .catch(function(err){
+          console.log('There was an error with the request');
+          console.log(err);
         })
 
 
-
     })
+
 
   </script>
 </body>
