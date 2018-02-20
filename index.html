@@ -16,8 +16,9 @@
     var word = document.getElementById('word');
     var getDefinitionButton = document.getElementById('getDefinition');
     var content = document.getElementById('content');
-    console.log(content);
 
+
+    // Adding click event listener
     getDefinitionButton.addEventListener('click', function(){
       var value = word.value;
 
@@ -25,7 +26,7 @@
 
       fetch(`https://wordsapiv1.p.mashape.com/words/${value}/definitions`, {
         headers : {
-          "X-Mashape-Key" : "chzAhp8zZTmshnlhL2SXViw8zcyKp1MEGRvjsnKmGoTysjVfsa",
+          "X-Mashape-Key" : "Insert API key here",
           "Accept" : "application/json"
         }
       })
@@ -49,7 +50,6 @@
 
 
     })
-
 
   </script>
 </body>
