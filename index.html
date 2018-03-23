@@ -13,15 +13,15 @@
   </div>
 
   <script>
-    var word = document.getElementById('word');
-    var getDefinitionButton = document.getElementById('getDefinition');
-    var content = document.getElementById('content');
+    let word = document.getElementById('word');
+    let getDefinitionButton = document.getElementById('getDefinition');
+    let content = document.getElementById('content');
     //Added
 
 
     // Adding click event listener
     getDefinitionButton.addEventListener('click', function(){
-      var value = word.value;
+      const value = word.value;
 
       content.innerHTML = '<h1>Loading, please wait...</h1>';
 
@@ -34,7 +34,7 @@
         .then(function(response){
           response.json()
             .then(function(data){
-              var finalContent = '';
+              let finalContent = '';
               data.definitions.map(function(item, i){
                 listItem = i + 1
                 dataContent = '<p>' + listItem + '. ' + item.definition + '</p>';
